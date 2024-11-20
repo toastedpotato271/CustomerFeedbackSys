@@ -240,12 +240,12 @@ const Dashboard = () => {
                     </>
                     ) : (
                     <>
-                        {review.text.slice(0, 100)}...{" "}
+                        {review.text.slice(0, 200)}...{" "}
                         <span
                         className="read-more"
                         onClick={() => handleExpandReview(review.id)}
                         >
-                        Read More
+                        Read More...
                         </span>
                     </>
                     )
