@@ -1,9 +1,9 @@
 
 .dashboard {
-    font-family: Arial, sans-serif;
+    font-family: 'Montserrat', sans-serif !important; 
     color: #333;
+    padding-top: 60px;
   }
-  
 
     /* Header Section */
     .header {
@@ -23,12 +23,6 @@
     box-sizing: border-box;
   }
   
-  
-  /* Adjust the space below the header to prevent content overlap */
-  .dashboard {
-    padding-top: 60px;
-  }
-  
   /* Logo Styling */
   .logo {
     display: flex;
@@ -39,25 +33,33 @@
     height: 40px; /* Adjust the height to fit your header */
   } 
   
-  .icon {
-    font-size: 24px;
-    margin-right: 5px;
-  }
-  
-  .logout-button {
-    background: #fff;
-    color: #ff5f6d;
-    border: none;
-    border-radius: 5px;
-    padding: 5px 10px;
+  /* Login Button */
+.login-button {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Space between icon and text */
+    background: #fff; /* White background for Google-style button */
+    color: #333; /* Dark text */
+    border: 1px solid #ddd; /* Subtle border */
+    border-radius: 10px;
+    padding: 15px 35px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+    font-weight: bold;
     cursor: pointer;
-    transition: background 0.3s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    transition: all 0.3s ease;
   }
   
-  .logout-button:hover {
-    background: rgba(255, 255, 255, 0.8);
+  .login-button:hover {
+    background: #f7f7f7; /* Slight hover effect */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
   }
   
+  .google-icon {
+    width: 20px; /* Size of the Google icon */
+    height: 20px;
+  }  
   
   /* Banner Section */
   .banner {
@@ -191,45 +193,113 @@
   }  
   
   /* Review Styling */
-.review {
-    display: flex;
-    flex-direction: column;
-    background: #f9f9f9; /* Light gray background for the card */
-    border: 1px solid #e6e6e6; /* Subtle border */
-    border-radius: 20px; /* Rounded corners */
-    padding: 30px;
+  .reviews {
     margin-right: 45px;
+  }
+  
+  /* Reviews Section */
+.review {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 16px;
     margin-bottom: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+    position: relative;
   }
   
-  .review .stars {
-    font-size: 24px; /* Larger stars */
-    color: #f5a623; /* Golden color for stars */
-    margin-bottom: 10px; /* Space below stars */
-  }
-  
-  .review .review-text {
-    font-size: 16px; /* Slightly larger text */
-    color: #333; /* Darker gray for readability */
-    line-height: 1.5; /* Spacing between lines */
-  }
-  
-  .review .review-meta {
+  /* Review Header */
+  .review-header {
     display: flex;
-    justify-content: space-between; /* Align name and date to opposite sides */
-    font-size: 14px; /* Smaller text for meta information */
-    color: #999; /* Light gray for meta information */
+    justify-content: space-between;
+    align-items: center;
   }
   
-  .review .review-meta .review-author {
-    font-weight: bold; /* Make the author name stand out */
-    color: #000; /* Black for author name */
+  .review-header .stars {
+    font-size: 25px;
+    color: #ffc107;
   }
   
-  .review .review-meta .review-date {
-    font-weight: normal; /* Normal weight for the date */
-    text-transform: uppercase; /* Uppercase for uniformity */
+  .review-header .review-date {
+    font-size: 14px;
+    color: #888;
+    font-style: italic;
+  }
+  
+  /* Review Text */
+  .review-text {
+    margin: 10px 0;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  
+  .review-text .read-more {
+    color: #ff4800;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  
+  /* Review Meta */
+  .review-meta {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .author-icon {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+  }
+  
+  .author-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .review-author {
+    font-weight: bold;
+    margin-right: auto;
+  }
+  
+  /* AI Prediction Icon */
+  .ai-icon {
+    width: 24px;
+    height: 24px;
+  }
+  
+
+  /* Dropdowns Container */
+.dropdowns {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  /* Sort Dropdown */
+  .sort-dropdown,
+  .filter-dropdown {
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+  }
+  
+  .sort-dropdown label,
+  .filter-dropdown label {
+    font-weight: bold;
+    margin-right: 10px;
+  }
+  
+  .sort-dropdown select,
+  .filter-dropdown select {
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: "Montserrat", sans-serif;
   }  
   
   /* Floating Add Review Button */

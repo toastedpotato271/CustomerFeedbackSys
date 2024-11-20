@@ -14,7 +14,7 @@
 
 /* Modal Content */
 .modal-content {
-  background: #fff; /* White background for the form */
+  background: #f7f7f7; /* White background for the form */
   padding: 30px;
   border-radius: 20px; 
   width: 400px;
@@ -116,114 +116,27 @@ textarea::placeholder {
   background: #d4941b;
 }
 
-/* Success Animation Styles */
-.success-animation {
+/* Success GIF */
+.success-gif {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   text-align: center;
-  opacity: 0;
-  animation: fadeIn 0.5s ease-in-out forwards; /* Smooth fade-in animation */
+  width: 100%;
+  height: 100%;
 }
 
-.success-animation p {
+.success-gif img {
+  max-width: 400px; /* Adjust size of the GIF */
+  max-height: 400px;
+  border-radius: 10px; /* Optional: Add rounded corners */
+}
+
+.success-message {
+  margin-top: 15px; /* Space between GIF and message */
   font-size: 18px;
   font-weight: bold;
-  color: #333;
-  margin-top: 20px;
+  color: #4caf50; /* Green color for success */
   font-family: "Montserrat", sans-serif;
-}
-
-/* Checkmark Animation */
-.checkmark {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  display: block;
-  position: relative;
-  background: #4caf50; /* Green circle background */
-  animation: scaleUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards; /* Smooth scaling */
-}
-
-.checkmark .circle {
-  stroke-dasharray: 166;
-  stroke-dashoffset: 166;
-  stroke-width: 2;
-  stroke-miterlimit: 10;
-  stroke: #fff;
-  fill: none;
-  animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards; /* Smooth stroke fill */
-}
-
-.checkmark .line.tip {
-  width: 0;
-  height: 4px;
-  background: #fff;
-  position: absolute;
-  border-radius: 2px;
-  left: 20px;
-  top: 40px;
-  transform: rotate(45deg);
-  animation: tipDraw 0.4s ease-in-out 0.5s forwards;
-}
-
-.checkmark .line.long {
-  width: 0;
-  height: 4px;
-  background: #fff;
-  position: absolute;
-  border-radius: 2px;
-  right: 20px;
-  top: 40px;
-  transform: rotate(-45deg);
-  animation: longDraw 0.4s ease-in-out 0.5s forwards;
-}
-
-/* Keyframe Animations */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes scaleUp {
-  0% {
-    transform: scale(0);
-    opacity: 0;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-@keyframes stroke {
-  0% {
-    stroke-dashoffset: 166;
-  }
-  100% {
-    stroke-dashoffset: 0;
-  }
-}
-
-@keyframes tipDraw {
-  0% {
-    width: 0;
-  }
-  100% {
-    width: 20px;
-  }
-}
-
-@keyframes longDraw {
-  0% {
-    width: 0;
-  }
-  100% {
-    width: 30px;
-  }
 }
