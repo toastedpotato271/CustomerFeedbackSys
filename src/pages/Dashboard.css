@@ -1,0 +1,272 @@
+
+.dashboard {
+    font-family: Arial, sans-serif;
+    color: #333;
+  }
+  
+
+    /* Header Section */
+    .header {
+    position: fixed; /* Keeps the header fixed at the top */
+    top: 0; /* Aligns it to the top */
+    left: 0; /* Aligns it to the left edge */
+    width: 100%; /* Ensures the header spans the full viewport width */
+    z-index: 1000; /* Keeps it above other elements */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to right, #f43141, #f5a029); /* Gradient background */
+    padding: 35px 20px;
+    color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    height: 60px; /* Explicit height for the header */
+    box-sizing: border-box;
+  }
+  
+  
+  /* Adjust the space below the header to prevent content overlap */
+  .dashboard {
+    padding-top: 60px;
+  }
+  
+  /* Logo Styling */
+  .logo {
+    display: flex;
+    align-items: center;
+  }
+  
+  .header-logo {
+    height: 40px; /* Adjust the height to fit your header */
+  } 
+  
+  .icon {
+    font-size: 24px;
+    margin-right: 5px;
+  }
+  
+  .logout-button {
+    background: #fff;
+    color: #ff5f6d;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .logout-button:hover {
+    background: rgba(255, 255, 255, 0.8);
+  }
+  
+  
+  /* Banner Section */
+  .banner {
+    text-align: center;
+    margin: 50px 50px 20px 50px;
+  }
+  
+  .banner-image {
+    width: 100%; /* Make the image span the full width of the container */
+    height: auto; /* Maintain the aspect ratio */
+    border-radius: 10px; /* Optional: Add rounded corners */
+    object-fit: cover; /* Ensures the image fills its container nicely */
+  }
+  
+  /* Banner Container */
+.banner-container {
+    width: 100%; /* Make it span the full width */
+    max-width: 100%; /* Restrict the maximum width */
+    height: 250px; /* Fixed height to achieve the aspect ratio */
+    margin: 0 auto; /* Center the container horizontally */
+    overflow: hidden; /* Hide parts of the image that go outside the container */
+    border-radius: 10px; /* Optional: Add rounded corners */
+    position: relative;
+  }
+  
+  /* Banner Image */
+  .banner-image {
+    width: 100%; /* Make the image fill the container width */
+    height: 100%; /* Make the image fill the container height */
+    object-fit: cover; /* Ensure the image maintains the aspect ratio while covering the container */
+    object-position: center; /* Center the image */
+  }
+  
+  /* Responsive Design for Mobile */
+  @media (max-width: 768px) {
+    .banner-container {
+      height: auto; /* Allow the height to adjust dynamically */
+    }
+  
+    .banner-image {
+      object-fit: contain; /* Ensure the whole image is visible on small screens */
+    }
+  }
+  
+  
+  /* Main Content Section */
+  .content {
+    display: grid;
+    grid-template-columns: 25% 75%;
+    gap: 50px;
+    padding: 0 80px;
+  }
+  
+  /* Overview Styling */
+.overview {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Spacing between elements */
+  }
+  
+  .average-rating {
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    align-items: center; /* Center-align the text and stars */
+    justify-content: center; /* Center content */
+    padding: 40px 20px;
+    border: 2px solid #e6e6e6; /* Light gray border */
+    border-radius: 20px;
+    background-color: #fff; /* White background */
+    font-family: 'Montserrat', sans-serif; /* Use Montserrat font */
+  }
+  
+  .average-rating h3 {
+    font-size: 48px; /* Large font for the average rating */
+    font-weight: bold;
+    margin: 0;
+    color: #000;
+  }
+  
+  .stars {
+    font-size: 24px; /* Adjust star size */
+    color: #f5a623; /* Golden color for stars */
+    margin-bottom: 5px; /* Space below stars */
+    line-height: 1.2; /* Adjust line height for spacing */
+  }
+  
+  .average-rating p {
+    font-size: 18px; /* Text size for "Average Rating" */
+    font-weight: bold;
+    color: #333;
+    margin: 0;
+    text-align: center; /* Center-align the text */
+  }  
+  
+  .rating-breakdown {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 0 30px;
+  }
+  
+  .rating-row {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between stars and bar */
+  }
+  
+  .rating-row span {
+    font-size: 16px;
+    font-weight: bold;
+    color: #f5a623;
+    display: flex;
+    align-items: center;
+  }
+  
+  .bar {
+    flex: 1;
+    height: 10px; /* Adjust bar height */
+    background-color: #e6e6e6; /* Light gray background for the bar */
+    border-radius: 5px; /* Rounded corners */
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .bar div {
+    height: 100%;
+    background-color: #f5a623; /* Golden color for the filled part */
+    width: 0%; /* Default width */
+    border-radius: 5px;
+    transition: width 0.3s ease; /* Smooth transition */
+  }  
+  
+  /* Review Styling */
+.review {
+    display: flex;
+    flex-direction: column;
+    background: #f9f9f9; /* Light gray background for the card */
+    border: 1px solid #e6e6e6; /* Subtle border */
+    border-radius: 20px; /* Rounded corners */
+    padding: 30px;
+    margin-right: 45px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+  }
+  
+  .review .stars {
+    font-size: 24px; /* Larger stars */
+    color: #f5a623; /* Golden color for stars */
+    margin-bottom: 10px; /* Space below stars */
+  }
+  
+  .review .review-text {
+    font-size: 16px; /* Slightly larger text */
+    color: #333; /* Darker gray for readability */
+    line-height: 1.5; /* Spacing between lines */
+  }
+  
+  .review .review-meta {
+    display: flex;
+    justify-content: space-between; /* Align name and date to opposite sides */
+    font-size: 14px; /* Smaller text for meta information */
+    color: #999; /* Light gray for meta information */
+  }
+  
+  .review .review-meta .review-author {
+    font-weight: bold; /* Make the author name stand out */
+    color: #000; /* Black for author name */
+  }
+  
+  .review .review-meta .review-date {
+    font-weight: normal; /* Normal weight for the date */
+    text-transform: uppercase; /* Uppercase for uniformity */
+  }  
+  
+  /* Floating Add Review Button */
+  .add-review {
+    position: fixed;
+    bottom: 30px; /* Distance from the bottom of the screen */
+    right: 40px; /* Distance from the right of the screen */
+    z-index: 1000;
+  }
+  
+  .add-review-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to right, #f84352, #fab34f); /* Gradient background */
+    color: #fff;
+    border: none;
+    border-radius: 20px; 
+    padding: 20px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    transition: transform 0.3s, background 0.3s;
+  }
+  
+  .add-review-button:hover {
+    transform: scale(1.1); /* Slight scale effect on hover */
+    background: linear-gradient(to right, #f43141, #faad40); /* Slightly darker gradient on hover */
+  }
+  
+  .review-icon {
+    width: 20px; /* Adjust size of the icon */
+    height: 20px;
+    margin-right: 10px; /* Space between icon and text */
+    filter: invert(100%) brightness(200%); /* Change the black icon to white */
+  }
+  
+  
