@@ -8,13 +8,16 @@ import logo from "../img/starplus-logo.png";
 import bannerImage from "../img/banner-design.jpg";
 import userIcon from "../img/user.png";
 import predictionIcon from "../img/prediction.png";
+import logisticModel from "../model/logistic_model.json";
+import vectorizerData from "../model/vectorizer.json";
+import { create, all } from "mathjs";
 
 const Dashboard = () => {
   const [reviews, setReviews] = useState([]);
   const [sortedAndFilteredReviews, setSortedAndFilteredReviews] = useState([]);
   const [sortOrder, setSortOrder] = useState("latest");
   const [filterRating, setFilterRating] = useState("all");
-  const [expandedReviews, setExpandedReviews] = useState(new Set()); // Track expanded reviews
+  const [expandedReviews, setExpandedReviews] = useState(new Set());
   const [averageRating, setAverageRating] = useState(0);
   const [ratingsBreakdown, setRatingsBreakdown] = useState({
     5: 0,
@@ -25,6 +28,51 @@ const Dashboard = () => {
   });
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [user, setUser] = useState(null);
+
+  const math = create(all);
+
+  // Function to transform text using the vectorizer JSON
+  const tfidfTransform = (text, vocabulary, idf) => {
+    const tokens = text.toLowerCase().split(/\W+/); // Tokenize text
+    const vector = new Array(Object.keys(vocabulary).length).fill(0);
+
+    tokens.forEach((token) => {
+      if (vocabulary[token] !== undefined) {
+        vector[vocabulary[token]] = 1; // Mark presence of token
+      }
+    });
+
+    // Apply idf weights
+    return vector.map((val, index) => val * idf[index]);
+  };
+
+  // Function to predict sentiment using the model JSON
+  const predictReview = (reviewText) => {
+    const { coefficients, intercept, classes } = logisticModel;
+    const { vocabulary, idf } = vectorizerData;
+
+    // Transform the review using TF-IDF
+    const transformedReview = tfidfTransform(reviewText, vocabulary, idf);
+
+    // Perform logistic regression prediction
+    const z = math.add(
+      math.multiply(transformedReview, math.matrix(coefficients[0])),
+      intercept[0]
+    );
+    const probability = 1 / (1 + Math.exp(-z));
+
+    // Return class based on probability
+    return probability >= 0.5 ? classes[1] : classes[0];
+  };
+
+  const handlePredictClick = (reviewText) => {
+    const prediction = predictReview(reviewText);
+    alert(
+      `Prediction: This review is ${
+        prediction === 1 ? "Good" : "Bad"
+      }.\n\nReview: "${reviewText}"`
+    );
+  };
 
   useEffect(() => {
     const fetchReviews = async () => {
@@ -102,9 +150,9 @@ const Dashboard = () => {
     setExpandedReviews((prevExpanded) => {
       const updatedExpanded = new Set(prevExpanded);
       if (updatedExpanded.has(reviewId)) {
-        updatedExpanded.delete(reviewId); // Collapse if already expanded
+        updatedExpanded.delete(reviewId);
       } else {
-        updatedExpanded.add(reviewId); // Expand if not already expanded
+        updatedExpanded.add(reviewId);
       }
       return updatedExpanded;
     });
@@ -228,48 +276,59 @@ const Dashboard = () => {
 
               <div className="review-text">
                 {review.text.length > 100 ? (
-                    expandedReviews.has(review.id) ? (
+                  expandedReviews.has(review.id) ? (
                     <>
-                        {review.text}{" "}
-                        <span
+                      {review.text}{" "}
+                      <span
                         className="read-more"
                         onClick={() => handleExpandReview(review.id)}
-                        >
+                      >
                         Show Less
-                        </span>
+                      </span>
                     </>
-                    ) : (
+                  ) : (
                     <>
-                        {review.text.slice(0, 200)}...{" "}
-                        <span
+                      {review.text.slice(0, 100)}...{" "}
+                      <span
                         className="read-more"
                         onClick={() => handleExpandReview(review.id)}
-                        >
+                      >
                         Read More...
-                        </span>
+                      </span>
                     </>
-                    )
+                  )
                 ) : (
-                    review.text
+                  review.text
                 )}
               </div>
-
 
               <div className="review-meta">
                 <div
                   className="author-icon"
                   style={{
-                    backgroundColor: review.author ? "transparent" : getRandomColor(),
+                    backgroundColor: review.author
+                      ? "transparent"
+                      : getRandomColor(),
                   }}
                 >
                   {review.author ? (
-                    <img src={review.authorPhoto || userIcon} alt="User Icon" />
+                    <img
+                      src={review.authorPhoto || userIcon}
+                      alt="User Icon"
+                    />
                   ) : (
                     <img src={userIcon} alt="Anonymous Icon" />
                   )}
                 </div>
-                <span className="review-author">{review.author || "Anonymous"}</span>
-                <img src={predictionIcon} alt="AI Icon" className="ai-icon" />
+                <span className="review-author">
+                  {review.author || "Anonymous"}
+                </span>
+                <img
+                  src={predictionIcon}
+                  alt="AI Icon"
+                  className="ai-icon"
+                  onClick={() => handlePredictClick(review.text)} // Trigger prediction
+                />
               </div>
             </div>
           ))}
@@ -278,7 +337,10 @@ const Dashboard = () => {
 
       {/* Floating Add Review Button */}
       <div className="add-review">
-        <button className="add-review-button" onClick={() => setIsModalOpen(true)}>
+        <button
+          className="add-review-button"
+          onClick={() => setIsModalOpen(true)}
+        >
           <img
             src={require("../img/review.png")}
             alt="Review Icon"
