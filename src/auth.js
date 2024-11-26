@@ -3,13 +3,12 @@ import { initializeApp } from "firebase/app";
 
 // Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAo2INi_uaBDofD9-KrxrkEGlevMrnCJ40",
-  authDomain: "cfs-react-4c4eb.firebaseapp.com",
-  projectId: "cfs-react-4c4eb",
-  storageBucket: "cfs-react-4c4eb.firebasestorage.app",
-  messagingSenderId: "657323064458",
-  appId: "1:657323064458:web:464d1eb9c8b76e2b2f0173",
-  measurementId: "G-SSGTZE11R3"
+  apiKey: "your-api-key",
+  authDomain: "your-auth-domain",
+  projectId: "your-project-id",
+  storageBucket: "your-storage-bucket",
+  messagingSenderId: "your-messaging-sender-id",
+  appId: "your-app-id",
 };
 
 // Initialize Firebase
